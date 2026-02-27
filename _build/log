@@ -1,9 +1,9 @@
-# dune exec bin/main.exe
+# dune runtest
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
-# Shared cache location: /home/chase/.cache/dune/db
-# Workspace root: /home/chase/Repositories/OCaml/game_of_life
-# Auto-detected concurrency: 8
+# Shared cache location: /home/offma/.cache/dune/db
+# Workspace root: /mnt/c/Users/offma/SchoolWork/SOL/OCamlGOL/OCamlGOL
+# Auto-detected concurrency: 16
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -13,10 +13,8 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_e5107c_output
-$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
-> File "lib/utils.ml", line 22, characters 12-17:
-> 22 |     | coord count, true when count > 2 && count < 5 -> coord * 1
->                  ^^^^^
+$ /home/offma/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_a546c3_output
+$ (cd _build/default && /home/offma/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
+> File "lib/utils.ml", line 54, characters 0-0:
 > Error: Syntax error
 [2]
