@@ -19,8 +19,9 @@ let is_alive ht (cord: int * int) =
 (**Checks the the will_live statis of each cell and produces the next generation of the delta*)
 let will_live n alive = 
     match n, alive with
-    | coord count, true when count > 2 && count < 5 -> coord * 1
-    | coord count, true when count < 3 && count > 4 -> coord * 0
+    | (coord, count), true when count > 2 && count < 5 -> coord * 1
+    | (coord, count), true when count < 3 || count > 4 -> coord * 0
+    | _ -> 0
 (**checks each cell live status of the gived coordinate pair (x, y)*)
 let is_alive ht (cord: int * int) = 
     let exists = Hashtbl.find_opt ht cord in (* -> Some || None *)
