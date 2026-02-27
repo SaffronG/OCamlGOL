@@ -12,10 +12,9 @@ let rec arr_print =
     | (h1,h2)::t-> let () = (h1 |> string_of_int)^", "^(h2 |> string_of_int) |> print_endline in t |> arr_print
 (**checks each cell live status of the gived coordinate pair (x, y)*)
 let is_alive ht (cord: int * int) = 
-    let exists = Hashtbl.find_opt ht cord in (* -> Some || None *)
-    match exists with
-    | None -> 0
-    | Some cord -> 1
+    if Hashtbl.mem ht cord 
+    then 1 
+    else 0
 (**Checks the the will_live statis of each cell and produces the next generation of the delta*)
 let will_live n alive = 
     match n, alive with
@@ -42,12 +41,11 @@ let count_ns coord h_table =
     live_ns |> List.fold_left (+) 0
 (** Takes target coord and counts all live neighbors *)
 let count_ns coord h_table =
-    let nbs = coord |> deltas_of_b in (* (int * int) |> -> list (int * int) *)
-    let live_ns = List.map (is_alive h_table) nbs in (*  *)
-    let count = live_ns |> List.fold_left (+) 0 in
-    coord * count
+    let nbs = deltas_of_b coord in
+    List.map (is_alive h_table) nbs |> List.fold_left (+) 0
 (** Takes in the current HashTable of living cells and returns the next frame as a new HashTable *)
 let next_gen live_cells = 
-    let next_frame = Hashtbl.create 16 in
+    let next_frame = Hashtbl.create (Hashtbl.length live_cells)in
     let counts = Iter.of_hashtbl live_cells |> Iter.map count_ns |> Iter.to_list in
-    let live_next = counts |> List.map will_live
+    let live_next = counts |> List.map will_live in
+    Hashtble.add next_frame coord ()
