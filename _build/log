@@ -13,11 +13,12 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_dc51cd_output
-$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
-> File "lib/utils.ml", line 36, characters 37-52:
-> 36 |     let next_frame = Hashtbl.create (Hshtable.length live_cells)in
->                                           ^^^^^^^^^^^^^^^
-> Error: Unbound module Hshtable
-> Hint: Did you mean Hashtbl?
+$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_4e4b32_output
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -I /home/chase/.opam/cs3110-2026sp/lib/iter -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
+> File "lib/utils.ml", line 36, characters 20-26:
+> 36 |     let live_next = counts |> List.map will_live in
+>                          ^^^^^^
+> Error: The value counts has type ((int * int, 'a) Hashtbl.t -> int) list
+>        but an expression was expected of type int list
+>        Type (int * int, 'a) Hashtbl.t -> int is not compatible with type int
 [2]

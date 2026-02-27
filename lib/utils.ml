@@ -31,7 +31,7 @@ let count_ns coord h_table =
     List.map (is_alive h_table) nbs |> List.fold_left (+) 0
 (** Takes in the current HashTable of living cells and returns the next frame as a new HashTable *)
 let next_gen live_cells = 
-    let next_frame = Hashtbl.create (Hashtable.length live_cells)in
+    let next_frame = Hashtbl.create (Hashtbl.length live_cells)in
     let counts = Iter.of_hashtbl live_cells |> Iter.map count_ns |> Iter.to_list in
     let live_next = counts |> List.map will_live in
     Hashtble.add next_frame coord ()

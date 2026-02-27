@@ -1,4 +1,5 @@
 (executable
  (public_name game_of_life)
  (name main)
- (libraries game_of_life iter))
+ (libraries game_of_life)
+ (libraries iter))

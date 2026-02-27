@@ -1,0 +1,4 @@
+(library
+ (name game_of_life)
+ (wrapped false))
+ 

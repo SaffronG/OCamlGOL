@@ -3,8 +3,6 @@ let deltas = [-1;0;1]
 let moore_nb = List.concat_map (fun x -> List.map (fun y -> (x,y)) deltas ) deltas
 (** (n,n) -> [(x1,y1)..(x9,y9)] *)
 let deltas_of_b (cx, cy) = List.map (fun (dx, dy) -> (cx + dx, cy + dy)) moore_nb
-(** given a board bound b, return only cells within board *)
-(*let bind_ns b css = List.filter (fun (x, y) -> (x < b && x >= 0 && y < b && y >= 0)) css*)
 (** print the array using the tuple destructuring x, y *)
 let rec arr_print =
     function
@@ -33,7 +31,7 @@ let count_ns coord h_table =
     List.map (is_alive h_table) nbs |> List.fold_left (+) 0
 (** Takes in the current HashTable of living cells and returns the next frame as a new HashTable *)
 let next_gen live_cells = 
-    let next_frame = Hashtbl.create (Hshtable.length live_cells)in
+    let next_frame = Hashtbl.create (Hashtbl.length live_cells)in
     let counts = Iter.of_hashtbl live_cells |> Iter.map count_ns |> Iter.to_list in
     let live_next = counts |> List.map will_live in
     Hashtble.add next_frame coord ()

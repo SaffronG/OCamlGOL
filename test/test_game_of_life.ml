@@ -15,3 +15,5 @@ let () = assert (Utils.deltas_of_b (0,0) |> (Utils.bind_ns test_board.bound) = [
 let () = assert (Utils.deltas_of_b (1,1) |> (Utils.bind_ns test_board.bound) = [(0,0);(0,1);(1,0);(1,1)])
 let () = assert (Utils.deltas_of_b (2,2) |> (Utils.bind_ns test_board.bound) = [(1,1)])
 let () = assert (Utils.deltas_of_b (3,3) |> (Utils.bind_ns test_board.bound) = [])
+(* Test is_alive and will_live functions based on a static hashtable *)
+let tcs = Hashtbl.create 16
