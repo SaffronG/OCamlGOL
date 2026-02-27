@@ -39,15 +39,14 @@ let count_ns coord h_table =
     let nbs = coord |> deltas_of_b in (* (int * int) |> -> list (int * int) *)
     let live_ns = List.map is_alive nbs in (*  *)
     live_ns |> List.fold_left (+) 0
-    | coord count, false when count > 2 && count < 5 -> coord * 1
-    | _ -> coord * 0
 (** Takes target coord and counts all live neighbors *)
 let count_ns coord h_table =
     let nbs = coord |> deltas_of_b in (* (int * int) |> -> list (int * int) *)
     let live_ns = List.map (is_alive h_table) nbs in (*  *)
     let count = live_ns |> List.fold_left (+) 0 in
     coord * count
+(** Takes in the current HashTable of living cells and returns the next frame as a new HashTable *)
 let next_gen live_cells = 
-    let next_frame = Hashtbl.create in
-    let counts = Iter.of_hashtbl h_table |> Iter.map count_ns |> Iter.to_list in
-    let will_live = counts |> List.map will_live
+    let next_frame = Hashtbl.create 16 in
+    let counts = Iter.of_hashtbl live_cells |> Iter.map count_ns |> Iter.to_list in
+    let live_next = counts |> List.map will_live
