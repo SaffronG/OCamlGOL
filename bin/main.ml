@@ -1,7 +1,3 @@
 (* MAIN *)
 let tn = Utils.deltas_of_b (2,2)
 let mnb = Utils.moore_nb
-let in_bounds = Utils.bind_ns 3 tn
-
-let () = Utils.arr_print mnb
-(*let () = arr_print tn*)

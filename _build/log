@@ -13,10 +13,8 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_eaf3a7_output
+$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_344271_output
 $ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
-> File "lib/utils.ml", line 3, characters 31-36:
-> 3 | let ( @. ) cs (x, y) = cs (y * board.bound + x)
->                                    ^^^^^
-> Error: Unbound value board
+> File "lib/utils.ml", line 36, characters 0-0:
+> Error: Syntax error
 [2]
