@@ -13,6 +13,10 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_6d514f_output
-$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -I bin/.main.eobjs/byte -I bin/.main.eobjs/native -I lib/.game_of_life.objs/byte -I lib/.game_of_life.objs/native -cmi-file bin/.main.eobjs/byte/dune__exe__Main.cmi -no-alias-deps -opaque -o bin/.main.eobjs/native/dune__exe__Main.cmx -c -impl bin/main.ml)
-$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -o bin/main.exe lib/game_of_life.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)
+$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_eaf3a7_output
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
+> File "lib/utils.ml", line 3, characters 31-36:
+> 3 | let ( @. ) cs (x, y) = cs (y * board.bound + x)
+>                                    ^^^^^
+> Error: Unbound value board
+[2]
