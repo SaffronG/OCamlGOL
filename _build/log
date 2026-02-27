@@ -1,4 +1,4 @@
-# dune runtest
+# dune exec bin/main.exe
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
 # Shared cache location: /home/chase/.cache/dune/db
@@ -13,7 +13,6 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_78755d_output
-$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -I test/.test_game_of_life.eobjs/byte -I test/.test_game_of_life.eobjs/native -I lib/.game_of_life.objs/byte -I lib/.game_of_life.objs/native -cmi-file test/.test_game_of_life.eobjs/byte/dune__exe__Test_game_of_life.cmi -no-alias-deps -opaque -o test/.test_game_of_life.eobjs/native/dune__exe__Test_game_of_life.cmx -c -impl test/test_game_of_life.ml)
-$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -o test/test_game_of_life.exe lib/game_of_life.cmxa test/.test_game_of_life.eobjs/native/dune__exe__Test_game_of_life.cmx)
-$ (cd _build/default/test && ./test_game_of_life.exe)
+$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_6d514f_output
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -I bin/.main.eobjs/byte -I bin/.main.eobjs/native -I lib/.game_of_life.objs/byte -I lib/.game_of_life.objs/native -cmi-file bin/.main.eobjs/byte/dune__exe__Main.cmi -no-alias-deps -opaque -o bin/.main.eobjs/native/dune__exe__Main.cmx -c -impl bin/main.ml)
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -o bin/main.exe lib/game_of_life.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)
