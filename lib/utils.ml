@@ -10,4 +10,8 @@ let rec arr_print =
     function
     | [] -> ()
     | (h1,h2)::t-> let () = (h1 |> string_of_int)^", "^(h2 |> string_of_int) |> print_endline in t |> arr_print
-
+(** Takes target coord and counts all live neighbors *)
+let count_ns coord h_table =
+    let nbs = coord |> deltas_of_b in
+    let live_ns = nbs |> List.map is_alive in
+    live_ns |> List.fold_left (+) 0
