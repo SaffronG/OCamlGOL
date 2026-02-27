@@ -1,0 +1,2 @@
+dune-project OCamlGOL
+# OCamlGOL

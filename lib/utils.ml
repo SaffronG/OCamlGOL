@@ -11,3 +11,18 @@ let rec arr_print =
     | [] -> ()
     | (h1,h2)::t-> let () = (h1 |> string_of_int)^", "^(h2 |> string_of_int) |> print_endline in t |> arr_print
 
+(**checks each cell live status of the gived coordinate pair (x, y)*)
+let is_alive ht cord = 
+    match cord with
+    | NONE -> 0
+    | Sum cord -> 1
+
+(**Checks the the will_live statis of each cell and produces the next generation of the delta*)
+let will_live n alive? = 
+    match n with
+    | n true where n > 2 && n < 5 -> 1
+    | n true where n < 3 && n > 4 -> 0
+    | n false where n > 2 && n < 5 -> 1
+    | _ -> 0
+
+

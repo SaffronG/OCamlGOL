@@ -1,0 +1,4 @@
+(lang dune 3.21)
+(name game_of_life)
+(sections (lib .) (bin ../../bin) (doc ../../doc/game_of_life))
+(files (lib (META dune-package opam)) (bin (game_of_life)) (doc (README.md)))

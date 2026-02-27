@@ -1,0 +1,11 @@
+lib: [
+  "_build/install/default/lib/game_of_life/META"
+  "_build/install/default/lib/game_of_life/dune-package"
+  "_build/install/default/lib/game_of_life/opam"
+]
+bin: [
+  "_build/install/default/bin/game_of_life"
+]
+doc: [
+  "_build/install/default/doc/game_of_life/README.md"
+]
