@@ -61,4 +61,5 @@ let rec run_gen n ht =
     if n <= 0 then ()
     else let next = next_gen ht in
          print_gen next;
+         print_endline "-----------------";
          run_gen (n - 1) next
