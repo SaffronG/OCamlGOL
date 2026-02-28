@@ -16,16 +16,17 @@ let is_alive ht (cord: int * int) =
 (**Checks the the will_live status of each cell and produces the next generation of the delta*)
 let will_live n alive = 
     match n, alive with
-    | (coord, cnt), true  when cnt > 2 && cnt < 5 -> (coord, 1)  (* survive *)
-    | (coord, cnt), true  when cnt < 3 || cnt > 4 -> (coord, 0)  (* die *)
+    | (coord, cnt), true  when cnt = 3 || cnt = 4 -> (coord, 1)   (* survive *)
+    | (coord, cnt), true                          -> (coord, 0)   (* die *)
     | (coord, cnt), false when cnt = 3            -> (coord, 1)  (* birth *)
     | (coord, _),   false                         -> (coord, 0)  (* stay dead *)
-    | _ -> failwith "Invalid input to will_live"
 (** Takes target coord and counts all live neighbors *)
 let count_ns coord h_table =
-    let nbs = coord |> deltas_of_b in (* (int * int) |> -> list (int * int) *)
-    let live_ns = List.map (is_alive h_table) nbs in
-    live_ns |> List.fold_left (+) 0
+  let nbs = deltas_of_b coord in                          (* 9 points, includes coord *)
+  let total =
+    List.fold_left (fun acc p -> acc + is_alive h_table p) 0 nbs
+  in
+  total - is_alive h_table coord                         (* remove self from the tally *)
 (** Takes target coord and counts all live neighbors *)
 let count_ns coord h_table =
     let nbs = deltas_of_b coord in

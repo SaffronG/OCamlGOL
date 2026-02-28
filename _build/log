@@ -1,4 +1,4 @@
-# dune runtest
+# dune exec bin/main.exe
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
 # Shared cache location: /home/chase/.cache/dune/db
@@ -13,7 +13,8 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_29c808_output
-$ (cd _build/default/test && ./test_game_of_life.exe)
-> Fatal error: exception File "test/test_game_of_life.ml", line 23, characters 9-15: Assertion failed
-[2]
+$ /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -config > /tmp/dune_41bf2c_output
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlc.opt -short-paths -keep-locs -warn-error +a -g -bin-annot -bin-annot-occurrences -I lib/.game_of_life.objs/byte -I /home/chase/.opam/cs3110-2026sp/lib/iter -no-alias-deps -opaque -o lib/.game_of_life.objs/byte/utils.cmo -c -impl lib/utils.ml)
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -I lib/.game_of_life.objs/byte -I lib/.game_of_life.objs/native -I /home/chase/.opam/cs3110-2026sp/lib/iter -cmi-file lib/.game_of_life.objs/byte/utils.cmi -no-alias-deps -opaque -o lib/.game_of_life.objs/native/utils.cmx -c -impl lib/utils.ml)
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -a -o lib/game_of_life.cmxa lib/.game_of_life.objs/native/utils.cmx)
+$ (cd _build/default && /home/chase/.opam/cs3110-2026sp/bin/ocamlopt.opt -short-paths -keep-locs -warn-error +a -g -o bin/main.exe /home/chase/.opam/cs3110-2026sp/lib/iter/iter.cmxa lib/game_of_life.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)
