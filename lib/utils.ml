@@ -22,19 +22,8 @@ let will_live n alive =
     | (coord, _),   false                         -> (coord, 0)  (* stay dead *)
 (** Takes target coord and counts all live neighbors *)
 let count_ns coord h_table =
-  let nbs = deltas_of_b coord in                          (* 9 points, includes coord *)
-  let total =
-    List.fold_left (fun acc p -> acc + is_alive h_table p) 0 nbs
-  in
-  total - is_alive h_table coord                         (* remove self from the tally *)
-(** Takes target coord and counts all live neighbors *)
-let count_ns coord h_table =
     let nbs = deltas_of_b coord in
     List.map (is_alive h_table) nbs |> List.fold_left (+) 0
-let (>>=) box = 
-    match box with
-    | (coord, 1) -> Some coord
-    | _ -> None
 (** Takes in the current HashTable of living cells and returns the next frame as a new HashTable *)
 let next_gen live_cells = 
     let next_frame = Hashtbl.create (Hashtbl.length live_cells * 2) in

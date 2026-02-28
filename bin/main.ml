@@ -6,4 +6,4 @@ let () = Hashtbl.add glider (0, 2) 1
 let () = Hashtbl.add glider (1, 2) 1
 let () = Hashtbl.add glider (2, 2) 1
 
-let () = glider |> Utils.run_gen 5
+let () = glider |> Utils.run_gen 20
