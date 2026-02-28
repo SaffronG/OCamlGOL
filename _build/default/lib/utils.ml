@@ -1,3 +1,4 @@
+
 let deltas = [-1;0;1]
 (** () -> [(-1,-1)..(1,1)] 'moore_neighborhood' *)
 let moore_nb = List.concat_map (fun x -> List.map (fun y -> (x,y)) deltas ) deltas
@@ -15,19 +16,14 @@ let is_alive ht (cord: int * int) =
     if Hashtbl.mem ht cord 
     then 1 
     else 0
-(**Checks the the will_live statis of each cell and produces the next generation of the delta*)
+(**Checks the the will_live status of each cell and produces the next generation of the delta*)
 let will_live n alive = 
     match n, alive with
-    | (coord, count), true when count > 2 && count < 5 -> coord * 1
-    | (coord, count), true when count < 3 || count > 4 -> coord * 0
-    | _ -> 0
-(**Checks the the will_live statis of each cell and produces the next generation of the delta*)
-let will_live n alive = 
-    match n, alive with
-    | n, true when n > 2 && n < 5 -> 1
-    | n, true when n < 3 && n > 4 -> 0
-    | n, false when n > 2 && n < 5 -> 1
-    | _ -> 0
+    | (coord, cnt), true  when cnt > 2 && cnt < 5 -> (coord, 1)  (* survive *)
+    | (coord, cnt), true  when cnt < 3 || cnt > 4 -> (coord, 0)  (* die *)
+    | (coord, cnt), false when cnt = 3                -> (coord, 1)  (* birth *)
+    | (coord, _),     false                           -> (coord, 0)  (* stay dead *)
+    | _ -> failwith "Invalid input to will_live"
 (** Takes target coord and counts all live neighbors *)
 let count_ns coord h_table =
     let nbs = coord |> deltas_of_b in (* (int * int) |> -> list (int * int) *)
@@ -37,9 +33,33 @@ let count_ns coord h_table =
 let count_ns coord h_table =
     let nbs = deltas_of_b coord in
     List.map (is_alive h_table) nbs |> List.fold_left (+) 0
+let (>>=) box = 
+    match box with
+    | (coord, 1) -> Some coord
+    | _ -> None
 (** Takes in the current HashTable of living cells and returns the next frame as a new HashTable *)
 let next_gen live_cells = 
-    let next_frame = Hashtbl.create (Hashtbl.length live_cells) in
-    let counts = Iter.of_hashtbl live_cells |> Iter.map count_ns |> Iter.to_list in
-    let live_next = counts |> List.map will_live in
-    Hashtble.add next_frame coord ()
+    let next_frame = Hashtbl.create (Hashtbl.length live_cells * 2) in
+    (* collect every live cell and its neighbours *)
+    let candidates = Hashtbl.create (Hashtbl.length live_cells * 9) in
+    Hashtbl.iter (fun coord _ ->
+        Hashtbl.replace candidates coord ();
+        List.iter (fun n -> Hashtbl.replace candidates n ()) (deltas_of_b coord)
+      ) live_cells;
+    (* evaluate each candidate *)
+    Hashtbl.iter (fun coord _ ->
+        let cnt   = count_ns coord live_cells in
+        let alive = Hashtbl.mem live_cells coord in
+        match will_live (coord, cnt) alive with
+        | (c, 1) -> Hashtbl.add next_frame c 1
+        | _      -> ()
+      ) candidates;
+    next_frame
+let rec print_gen ht = 
+    Hashtbl.iter (fun (x, y) _ -> Printf.printf "(%d, %d)\n" x y) ht
+
+let rec run_gen n ht =
+    if n <= 0 then ()
+    else let next = next_gen ht in
+         print_gen next;
+         run_gen (n - 1) next

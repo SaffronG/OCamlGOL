@@ -1,3 +1,9 @@
 (* MAIN *)
-let tn = Utils.deltas_of_b (2,2)
-let mnb = Utils.moore_nb
+let glider = Hashtbl.create 5
+let () = Hashtbl.add glider (1, 0) 1
+let () = Hashtbl.add glider (2, 1) 1
+let () = Hashtbl.add glider (0, 2) 1
+let () = Hashtbl.add glider (1, 2) 1
+let () = Hashtbl.add glider (2, 2) 1
+
+let () = glider |> Utils.run_gen 5
