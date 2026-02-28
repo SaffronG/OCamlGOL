@@ -1,1 +1,8 @@
 *.*~
+_build/
+*.cm*
+*.o
+*.a
+*.so
+*.cmi
+*.cmo
